@@ -21,46 +21,61 @@ bool KeyPressEvent::eventFilter(QObject* obj, QEvent* event)
         if(hk_newFile != hotkeys.end())
         {
             if(hk_newFile->second == hotKey)
+            {
                 emit newFile();
+                return true;
+            }
         }
         else if(keyEvent->matches(QKeySequence::StandardKey::New))
         {
             emit newFile();
+            return true;
         }
 
         auto hk_openFile = hotkeys.find(eTYPE_HOTKEY::OpenFile);
         if(hk_openFile != hotkeys.end())
         {
             if(hk_openFile->second == hotKey)
+            {
                 emit openFile();
+                return true;
+            }
         }
         else if(keyEvent->matches(QKeySequence::StandardKey::Open))
         {
             emit openFile();
+            return true;
         }
 
         auto hk_saveFile = hotkeys.find(eTYPE_HOTKEY::SaveFile);
         if(hk_saveFile != hotkeys.end())
         {
             if(hk_saveFile->second == hotKey)
+            {
                 emit saveFile();
+                return true;
+            }
         }
         else if(keyEvent->matches(QKeySequence::StandardKey::Save))
         {
             emit saveFile();
+            return true;
         }
 
         auto hk_Quit = hotkeys.find(eTYPE_HOTKEY::Quit);
         if(hk_Quit != hotkeys.end())
         {
             if(hk_Quit->second == hotKey)
+            {
                 emit quit();
+                return true;
+            }
         }
         else if(keyEvent->matches(QKeySequence::StandardKey::Quit))
         {
             emit quit();
+            return true;
         }
-        return true;
     }
     if (event->type() == QEvent::KeyRelease) return true;
     return QObject::eventFilter(obj, event);
